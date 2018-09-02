@@ -4,7 +4,50 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script>
+    window.onload = function () {
+        // 取得参数
+        var url = window.location.search;
+        var theRequest = new Object();
+        if(url.indexOf("?")!=-1){
+            var queryString = url.substr(1);
+            var querys = queryString.split("&");
+            for(var i=0;i<querys.length;i++){
+                theRequest[querys[i].split("=")[0]] = querys[i].split("=")[1];
+            }
+        }
+
+        // 加载用户数据
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("get","/getUserInfo?id="+theRequest.id,true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                var retData = JSON.parse(xmlhttp.responseText);
+                if(retData.isSuccess){
+                    document.getElementById("name").innerHTML = retData.content.name;
+                    document.getElementById("sex").innerHTML = retData.content.sex;
+                    document.getElementById("d1").style="display:block";
+                    document.getElementById("d2").style="display:none";
+                }else{
+                    document.getElementById("d1").style="display:none";
+                    document.getElementById("d2").style="display:block";
+                }
+            }
+        }
+    }
+
+
+</script>
 <body>
-    我是小雪，哈哈哈
+    <div id="d1" style="display: none">
+        欢迎你的到来!!!<br>
+        我是: <span id="name"></span> <br>
+        性别: <span id="sex"></span>
+    </div>
+
+    <div id="d2" style="display: none">
+        无此用户，请联系管理员
+    </div>
 </body>
 </html>

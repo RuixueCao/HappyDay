@@ -26,7 +26,7 @@ http.createServer(function (request,response) {
 
             if(username=="wang7liang" && password=="123456"){
                 retData.isSuccess=true;
-                retData.content={username:username,password:password};
+                retData.content={id:1,username:username,password:password};
             }else{
                 retData.isSuccess=false;
                 retData.message="用户名或者密码错误";
@@ -34,7 +34,33 @@ http.createServer(function (request,response) {
             response.writeHead(200, {'Content-Type': 'text/plain'});
             response.end(JSON.stringify(retData));
         })
+    }else if(pathname=='/getUserInfo'){
+        var id = querystring.parse(up.query).id
+
+        var retData = {
+            isSuccess:false,
+            message:'',
+            content:null
+        }
+        request.on("data",function (chunk) {
+            data += chunk;
+        })
+        request.on("end",function () {
+
+            if(id=="1"){
+                retData.isSuccess=true;
+                retData.content={id:1,name:"王琪亮",sex:"男"};
+            }else{
+                retData.isSuccess=false;
+                retData.message="无此用户";
+            }
+            response.writeHead(200, {'Content-Type': 'text/plain'});
+            response.end(JSON.stringify(retData));
+        })
+
     }else if(pathname=='/main'){
+        var id = querystring.parse(up.query).id
+
         data = fs.readFileSync('../app/main.html').toString();
 
         response.writeHead(200, {'Content-Type': 'text/html'});

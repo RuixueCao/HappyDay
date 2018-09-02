@@ -22,9 +22,9 @@
         xmlhttp.send(JSON.stringify(data));
         xmlhttp.onreadystatechange = function () {
             if(xmlhttp.readyState==4 && xmlhttp.status==200){
-                if(JSON.parse(xmlhttp.responseText).isSuccess){
-                    var loginForm = document.getElementById("loginForm");
-                    loginForm.submit();
+                var retData = JSON.parse(xmlhttp.responseText);
+                if(retData.isSuccess){
+                    window.location.href="main?id="+retData.content.id;
                 }else{
                     document.getElementById("message").innerHTML = JSON.parse(xmlhttp.responseText).message;
                 }
@@ -35,11 +35,8 @@
 
 </script>
 <body>
-
-    <form id="loginForm" action="main" method="post">
     用户名:<input type="text" name="username" id="username"><br>
     密码:<input type = "password" name="password" id="password"><br>
-    </form>
     <p id="message"></p>
     <button onclick="login()">提交</button>
 
