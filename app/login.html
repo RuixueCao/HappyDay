@@ -19,7 +19,7 @@
 
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.open("POST","/login",true);
-        xmlhttp.send(JSON.stringify(data));
+        xmlhttp.setRequestHeader('content-type', 'application/json');
         xmlhttp.onreadystatechange = function () {
             if(xmlhttp.readyState==4 && xmlhttp.status==200){
                 var retData = JSON.parse(xmlhttp.responseText);
@@ -30,6 +30,7 @@
                 }
             }
         }
+        xmlhttp.send(JSON.stringify(data));
     }
 
 
@@ -40,11 +41,6 @@
     <p id="message"></p>
     <button onclick="login()">提交</button>
 
-
-    <br><br><br><br><br>
-    <a href="detail?name=王琪亮&sex=男">王琪亮</a><br>
-    <a href="detail?name=曹瑞雪&sex=女">曹瑞雪</a><br>
-    <a href="detail?name=小三&sex=女">小三</a><br>
 
 </body>
 </html>
