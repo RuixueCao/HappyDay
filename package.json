@@ -4,6 +4,7 @@
   "description": "这是我的第一个项目。",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3"
   },
