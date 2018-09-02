@@ -4,11 +4,48 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+<script>
+
+    function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        var data = {
+            username:username,
+            password:password
+        }
+
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("POST","/login",true);
+        xmlhttp.send(JSON.stringify(data));
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                if(JSON.parse(xmlhttp.responseText).isSuccess){
+                    alert(1111)
+                }else{
+                    document.getElementById("message").innerHTML = JSON.parse(xmlhttp.responseText).message;
+                }
+            }
+        }
+    }
+
+
+</script>
 <body>
 
-    <form action="main">
-        用户名:<input type="text">
-        <input type="submit">
+
     </form>
+    用户名:<input type="text" name="username" id="username"><br>
+    密码:<input type = "password" name="password" id="password"><br>
+    <p id="message"></p>
+    <button onclick="login()">提交</button>
+
+    <br><br><br><br><br>
+    <a href="detail?name=王琪亮&sex=男">王琪亮</a><br>
+    <a href="detail?name=曹瑞雪&sex=女">曹瑞雪</a><br>
+    <a href="detail?name=小三&sex=女">小三</a><br>
+
+
 </body>
 </html>
