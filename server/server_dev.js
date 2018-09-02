@@ -1,7 +1,11 @@
 var path = require('path');
 var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
 var express = require("express");
 
+var MongoClient = mongodb.MongoClient;
+var ObjectId = mongodb.ObjectId;
+var url = "mongodb://127.0.0.1:27017/";
 
 var app = express();
 app.use(express.static('../app'));
@@ -26,14 +30,27 @@ app.post('/login',function (req,res) {
     var username = req.body.username;
     var password = req.body.password;
 
-    if(username=="wang7liang" && password=="123456"){
-        retData.isSuccess=true;
-        retData.content={id:1,username:username,password:password};
-    }else{
-        retData.isSuccess=false;
-        retData.message="用户名或者密码错误";
-    }
-    res.end(JSON.stringify(retData));
+    MongoClient.connect(url,function (err,db) {
+        if(err){
+            console.log(err);
+        }else{
+            var dbo = db.db("happyday");
+            dbo.collection("user").findOne({username: username, password:password},{},function (err,doc) {
+                if(err){
+                    throw err;
+                }else{
+                    if(doc==null){
+                        retData.isSuccess=false;
+                        retData.message="用户名或者密码错误";
+                    }else{
+                        retData.isSuccess=true;
+                        retData.content={id:doc._id.toString()};
+                    }
+                    res.end(JSON.stringify(retData));
+                }
+            });
+        }
+    })
 })
 
 app.get('/getUserInfo',function (req,res) {
@@ -44,15 +61,30 @@ app.get('/getUserInfo',function (req,res) {
     }
 
     var id = req.query.id;
+    var id = ObjectId(id)
 
-    if(id=="1"){
-        retData.isSuccess=true;
-        retData.content={id:1,name:"王琪亮",sex:"男"};
-    }else{
-        retData.isSuccess=false;
-        retData.message="无此用户";
-    }
-    res.end(JSON.stringify(retData));
+    MongoClient.connect(url,function (err,db) {
+        if(err){
+            console.log(err);
+        }else{
+            var dbo = db.db("happyday");
+            dbo.collection("user").findOne({_id: id},{},function (err,doc) {
+                if(err){
+                    throw err;
+                }else{
+                    if(doc==null){
+                        retData.isSuccess=false;
+                        retData.message="无此用户";
+                    }else{
+                        retData.isSuccess=true;
+                        retData.content=doc;
+                    }
+                    res.end(JSON.stringify(retData));
+                }
+            });
+        }
+    })
+
 })
 
 
