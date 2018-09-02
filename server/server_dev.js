@@ -35,10 +35,7 @@ http.createServer(function (request,response) {
             response.end(JSON.stringify(retData));
         })
     }else if(pathname=='/main'){
-
         data = fs.readFileSync('../app/main.html').toString();
-        var username = querystring.parse(up.query).username;
-        var password = querystring.parse(up.query).password;
 
         response.writeHead(200, {'Content-Type': 'text/html'});
         response.write(data);
