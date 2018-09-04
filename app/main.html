@@ -3,7 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
+<style>
+    body{
+        font-family: "Arial";
+        margin: 0;
+    }
+    .header{
+        padding:5px;
+        text-align: center;
+        background-color: lightblue;
+        color: white;
+    }
+    .header h1{
+        font-size: 40px;
+    }
+    .navbar {
+        overflow: hidden;
+        background-color: #f9d6f3;
+    }
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+    .navbar a.right {
+        float: right;
+    }
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+</style>
+
 <script>
     window.onload = function () {
         // 取得参数
@@ -40,8 +74,18 @@
 
 </script>
 <body>
+<div class="header">
+    <h1>I T 乐 园</h1>
+    <p>我还是一个小菜鸟</p>
+</div>
+<div class="navbar">
+    <a href="#">首页</a>
+    <a href="#">个人资料</a>
+    <a href="#">工作经历</a>
+    <a href="#" class="right">个人评价</a>
+</div>
     <div id="d1" style="display: none">
-        欢迎你的到来!!!<br>
+        <h3>IT的乐园</h3><br>
         我是: <span id="name"></span> <br>
         性别: <span id="sex"></span>
     </div>
