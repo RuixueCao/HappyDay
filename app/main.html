@@ -43,16 +43,18 @@
         display: flex;
         flex-wrap:wrap;
     }
-    #d1{
+    .d1{
         flex: 30%;
         background-color: #f1f1f1;
         padding: 20px;
     }
-    img {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 5px;
+    .tupian{
+        background:url("img/01.jpg");
+        background-size:150px 200px;
+        background-repeat:no-repeat;
+        background-position:top right;
     }
+
     .ok{
         flex: 70%;
         background-color: white;
@@ -108,9 +110,9 @@
     <a href="#" class="right">个人评价</a>
 </div>
 <div class="row">
-    <div id ="d1">
+    <div class ="d1">
+        <div class="tupian">
         <h4>个人资料</h4>
-        <div class="tupian"style="height:100px"><img src=".jpg"alt="添加失败"></div>
         <P> 姓名: 曹瑞雪 </p>
         <P>性别: 女</P>
         <P>年龄：1990年1月1日</P>
@@ -120,7 +122,7 @@
         <P>毕业学校：北京农业职业学院法律文秘专业</P>
         <h4>自我评价</h4>
         <p>性格开朗，认真肯专研，刚入门前端时抓不着重点，随着长时间的学习越来越有自信，希望通过自己的努力，未来越来越好，成为真正的全栈工程师。</p>
-    </div>
+    </div></div>
     <div class="ok">
 
     </div>
