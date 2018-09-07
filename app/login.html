@@ -46,9 +46,11 @@
             password:password
         }
 
+
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.open("POST","/login",true);
         xmlhttp.setRequestHeader('content-type', 'application/json');
+        xmlhttp.send(JSON.stringify(data));
         xmlhttp.onreadystatechange = function () {
             if(xmlhttp.readyState==4 && xmlhttp.status==200){
                 var retData = JSON.parse(xmlhttp.responseText);
@@ -59,7 +61,7 @@
                 }
             }
         }
-        xmlhttp.send(JSON.stringify(data));
+
     }
 
 

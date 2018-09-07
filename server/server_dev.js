@@ -5,7 +5,7 @@ var express = require("express");
 
 var MongoClient = mongodb.MongoClient;
 var ObjectId = mongodb.ObjectId;
-var url = "mongodb://127.0.0.1:27017/";
+var url = "mongodb://192.168.200.1:27017/";
 
 var app = express();
 app.use(express.static('../app'));
@@ -61,7 +61,8 @@ app.get('/getUserInfo',function (req,res) {
     }
 
     var id = req.query.id;
-    var id = ObjectId(id)
+    id = ObjectId(id)
+
 
     MongoClient.connect(url,function (err,db) {
         if(err){
