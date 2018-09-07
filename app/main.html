@@ -3,7 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        font-family: "Arial";
+        margin: 0;
+    }
+    .header{
+        padding:5px;
+        text-align: center;
+        background-color: lightblue;
+        color: white;
+    }
+    .header h1{
+        font-size: 40px;
+    }
+    .navbar {
+        overflow: hidden;
+        background-color: #f9d6f3;
+    }
+    .navbar a {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+    .navbar a.right {
+        float: right;
+    }
+    .navbar a:hover {
+        background-color: #ddd;
+        color: white ;
+    }
+    .row{
+        display: flex;
+        flex-wrap:wrap;
+    }
+    .d1{
+        flex: 30%;
+        background-color: #f1f1f1;
+        padding: 20px;
+    }
+    .tupian{
+        background:url("img/01.jpg");
+        background-size:150px 200px;
+        background-repeat:no-repeat;
+        background-position:top right;
+    }
+
+    .ok{
+        flex: 70%;
+        background-color: white;
+        padding: 20px;
+    }
+</style>
+
 <script>
     window.onload = function () {
         // 取得参数
@@ -40,10 +98,34 @@
 
 </script>
 <body>
-    <div id="d1" style="display: none">
-        欢迎你的到来!!!<br>
-        我是: <span id="name"></span> <br>
-        性别: <span id="sex"></span>
+<div class="header">
+    <h1>I T 乐 园</h1>
+    <p>我还是一个小菜鸟</p>
+</div>
+<div class="navbar">
+    <a href="#">首页</a>
+    <a href="#">个人资料</a>
+    <a href="#">工作经历</a>
+    <a href="#">作品列表</a>
+    <a href="#" class="right">个人评价</a>
+</div>
+<div class="row">
+    <div class ="d1">
+        <div class="tupian">
+        <h4>个人资料</h4>
+        <P> 姓名: 曹瑞雪 </p>
+        <P>性别: 女</P>
+        <P>年龄：1990年1月1日</P>
+        <P>户籍：山东泰安</P>
+        <P>婚姻：已婚</P>
+        <P>学历：大专</P>
+        <P>毕业学校：北京农业职业学院法律文秘专业</P>
+        <h4>自我评价</h4>
+        <p>性格开朗，认真肯专研，刚入门前端时抓不着重点，随着长时间的学习越来越有自信，希望通过自己的努力，未来越来越好，成为真正的全栈工程师。</p>
+    </div></div>
+    <div class="ok">
+
+    </div>
     </div>
 
     <div id="d2" style="display: none">
